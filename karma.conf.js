@@ -2,7 +2,7 @@ module.exports = function (config) {
   config.set({
     reporters: ['progress', 'coverage'],
     preprocessors: {
-      '**/*.ts': ['coverage']
+      'src/app/**/*.ts': ['coverage']
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage'),
@@ -10,13 +10,6 @@ module.exports = function (config) {
         {type: 'html', subdir: 'report-html'},
         {type: 'lcovonly', subdir: '.', file: 'lcov.info'}
       ]
-    },
-    browsers: ['ChromeHeadless'],
-    customLaunchers: {
-      ChromeHeadlessCI: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-gpu']
-      }
     },
   });
 };

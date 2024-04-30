@@ -22,3 +22,9 @@ jobs:
 
       - name: Build
         run: ng build
+
+      - name: Run tests and generate coverage
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+      - name: SonarQube Scan
+        run: sonar-scanner

@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Run tests and generate coverage
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        run: npm run test -- --no-watch --no-progress
 
       - name: SonarQube Scan
         run: sonar-scanner

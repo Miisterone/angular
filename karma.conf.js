@@ -1,69 +1,40 @@
+// Karma configuration file, see link for more information
+// https://karma-runner.github.io/1.0/config/configuration-file.html
+
 module.exports = function (config) {
   config.set({
-    // Base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-
-    // Frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
-
-    // List of files / patterns to load in the browser
-    files: [
-      // Patterns to load files
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage'),
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
-
-    // List of files / patterns to exclude
-    exclude: [
-    ],
-
-    // Preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'src/app/**/*.spec.ts': ['coverage']
+    client: {
+      jasmine: {
+        // you can add configuration options for Jasmine here
+        // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
+        // for example, you can disable the random execution with `random: false`
+        // or set a specific seed with `seed: 4321`
+      },
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-
-    // Test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
-
-    // Coverage reporter configuration
+    jasmineHtmlReporter: {
+      suppressAll: true // removes the duplicated traces
+    },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage'),
+      dir: require('path').join(__dirname, './coverage/angular-17-crud'),
+      subdir: '.',
       reporters: [
-        { type: 'html', subdir: 'report-html' },
-        { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
+        { type: 'html' },
+        { type: 'text-summary' },
+        { type: 'lcov' }
       ]
     },
-
-    // Web server port
-    port: 9876,
-
-    // Enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-    // Level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-    // Enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
-
-    // Start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeHeadless'],
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity,
-
-    // Configure the Angular CLI builder
-    angularCli: {
-      environment: 'dev'
-    }
+    reporters: ['progress', 'kjhtml'],
+    browsers: ['Chrome'],
+    restartOnFileChange: true
   });
 };

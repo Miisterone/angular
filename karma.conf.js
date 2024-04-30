@@ -11,5 +11,12 @@ module.exports = function(config) {
       { type: 'lcovonly', subdir: '.', file: 'lcov.info' }
     ]
   },
+    browsers: ['ChromeHeadless'],
+    customLaunchers: {
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--disable-gpu']
+      }
+    },
 });
 };

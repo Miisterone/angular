@@ -20,7 +20,7 @@ jobs:
         run: npm install
 
       - name: Run tests and generate coverage
-        run: npm run test
+        run: npm run test:ci
 
       - name: SonarQube Scan
         run: sonar-scanner

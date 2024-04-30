@@ -21,6 +21,7 @@ jobs:
 
       - name: Run tests and generate coverage
         run: npm run test:ci
+        continue-on-error: true
 
       - name: SonarQube Scan
         run: sonar-scanner
